@@ -1,0 +1,39 @@
+.banner1 {
+  padding-left: 5%;
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(255, 255, 255, 0.9)
+  );
+}
+.banner2 {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.9)
+  );
+}
+.banner2 > div {
+  padding-right: 5%;
+  color: black;
+}
+.banner-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 15%;
+  top: 0;
+  left: 0;
+  font-family: "Poppins", "Open Sans", sans-serif;
+  font-weight: 600;
+  color: #e47070;
+  cursor: default;
+  user-select: none;
+  text-align: right;
+}
+.banner-overlay h3 {
+  font-size: 48px;
+}
+.banner-overlay h4 {
+  font-size: 18px;
+}

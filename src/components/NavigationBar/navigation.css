@@ -1,0 +1,17 @@
+.menu li a {
+  position: relative;
+}
+.menu li a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+  background: #000;
+  width: 0%;
+  transition: width 200ms ease-in;
+}
+
+.menu li a:hover::before {
+  width: 100%;
+}
