@@ -12,6 +12,7 @@ import Login from "@pages/Authentication/Login";
 import Register from "@pages/Authentication/Register";
 import Profile from "@pages/Profile";
 import AddProducts from "@pages/Admin/AddProduct";
+import AddAdmin from "@pages/Admin/AddAdmin";
 
 function App() {
   return (
@@ -102,6 +103,9 @@ function App() {
             <Route path="/admin">
               <Route path="add-product" element={<AnimatedRoute animation="fade">
                 <AddProducts />
+              </AnimatedRoute>} />
+              <Route path="add-admin" element={<AnimatedRoute animation="fade">
+                <AddAdmin />
               </AnimatedRoute>} />
             </Route>
           </Animated>

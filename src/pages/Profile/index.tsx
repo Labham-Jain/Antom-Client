@@ -10,7 +10,7 @@ const Profile = () => {
     <div className="w-full flex justify-center items-center">
       <div className="w-3/4 p-12">
         <div className='flex'>
-          <ReactAvatar name="Labham" round />
+          <ReactAvatar name={Authentication?.details?.name} round />
           <div className='flex items-center ml-8'>
             <p className='text-2xl'>{Authentication?.details?.name}</p>
           </div>

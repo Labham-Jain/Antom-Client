@@ -1,8 +1,16 @@
+import API from "api";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { GenericContextComponent } from "../Contexts";
-import {manipulateOrderByID, moveInOrderFunc, ProductsContextInterface, ProductsList, updateInCartFunc} from "./ProductsContext";
+import {manipulateOrderByID, moveInOrderFunc, ProductsContextInterface, ProductsList, updateInCartFunc, uploadNewProductType} from "./ProductsContext";
 
-export const ProductsCtx = createContext<ProductsContextInterface>({updateInCart: () => {}, moveInOrder: () => {}, removeFromCart: () => {}, cart: [], orders: []});
+export const ProductsCtx = createContext<ProductsContextInterface>({
+  updateInCart: () => {},
+  moveInOrder: () => {},
+  removeFromCart: () => {},
+  uploadNewProduct: () => {},
+  cart: [],
+  orders: []
+});
 
 function ProductsContext({ children }: GenericContextComponent) {
   const [cart, setCart] = useState<ProductsList[]>([]);
@@ -44,6 +52,22 @@ function ProductsContext({ children }: GenericContextComponent) {
   const removeFromCart = () => {};
   const moveInOrder = () => {};
 
+  const uploadNewProduct: uploadNewProductType = (data: any) => {
+    const newData = {...data, images: undefined}
+    const formData = new FormData();
+    const newDataKeys = Object.keys(newData);
+
+    for (let i = 0; i < newDataKeys.length; i++) {
+      const key = newDataKeys[i];
+      formData.append(key, newData[key])
+    }
+    [...data.images].map((img: File) => {
+      formData.append('images', img, img.name);
+    });
+    API.post("products", { body: formData, headers: {"Content-Type": undefined} })
+
+  }
+
   useEffect(() => {
     const cartString = localStorage.getItem('cart');
     if(cartString){
@@ -55,6 +79,7 @@ function ProductsContext({ children }: GenericContextComponent) {
     updateInCart,
     moveInOrder,
     removeFromCart,
+    uploadNewProduct,
     cart,
     orders,
   }

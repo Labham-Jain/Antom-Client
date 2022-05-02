@@ -1,13 +1,12 @@
 import Button from "@components/Button"
 import { ProductsCtx } from "@contexts/ProductsContext"
 import { ProductsContextInterface } from "@contexts/ProductsContext/ProductsContext"
-import { ItemType } from "@utils/data"
 import { nanoid } from "nanoid";
 import { useCallback, useContext, useEffect, useState } from "react"
 import { BiMinus, BiPlus, BiShoppingBag } from "react-icons/bi"
 import ReactStars from "react-stars"
 
-const Card = ({item}: {item: ItemType}) => {
+const Card = ({item}: {item: any}) => {
   const {cart, updateInCart} = useContext<ProductsContextInterface>(ProductsCtx);
   const [cartItemCount, setCartItemCount] = useState<number>(0)
 
@@ -27,7 +26,7 @@ const Card = ({item}: {item: ItemType}) => {
   return (
     <div className="w-[250px] h-[420px] bg-white shadow-none overflow-hidden relative flex flex-col" key={nanoid(10)}>
       <span className="bg-black bg-opacity-20 w-full rounded-md h-[250px] block absolute"></span>
-      <img src={item.src} className="w-full h-[250px] object-cover rounded-md" alt="" />
+      <img src={import.meta.env.VITE_BACKEND_URL + item.src} className="w-full h-[250px] object-cover rounded-md" alt="" />
       <div id="product_details" className="mt-4 ml-2 flex flex-col h-full justify-between">
         <h3 className={`${item.name.length > 22 ? 'text-base' : 'text-lg'} font-sans font-semibold`}>{item.name}</h3>
         <div className="flex items-center gap-2 select-none">
